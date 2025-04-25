@@ -1,0 +1,223 @@
+# 1.
+val1 = float(input("Enter the first value: "))
+val2 = float(input("Enter the second value: "))
+
+if val1 > val2:
+    print(f"Largest: {val1}")
+    print(f"Smallest: {val2}")
+else:
+    print(f"Largest: {val2}")
+    print(f"Smallest: {val1}")
+
+# 2.
+a = float(input("Enter value A: "))
+b = float(input("Enter value B: "))
+c = float(input("Enter value C: "))
+
+if a >= b and a >= c:
+    print(f"Largest: {a}")
+elif b >= a and b >= c:
+    print(f"Largest: {b}")
+else:
+    print(f"Largest: {c}")
+
+if a <= b and a <= c:
+    print(f"Smallest: {a}")
+elif b <= a and b <= c:
+    print(f"Smallest: {b}")
+else:
+    print(f"Smallest: {c}")
+
+# 3.
+check_num = int(input("Enter any number: "))
+
+if check_num % 2 == 0:
+    print("Even number")
+else:
+    print("Odd number")
+
+# 4.
+input_val = int(input("Enter a number: "))
+
+if input_val % 10 == 0:
+    print("Divisible by 10")
+else:
+    print("Not divisible by 10")
+
+# 5.
+user_age = int(input("Enter age: "))
+
+if user_age < 18:
+    print("You are a Minor")
+else:
+    print("You are a Major")
+
+# 6.
+input_str = input("Type a number: ")
+print("Total digits:", len(input_str))
+
+# 7.
+check_year = int(input("Input a year: "))
+
+if (check_year % 4 == 0 and check_year % 100 != 0) or (check_year % 400 == 0):
+    print("Leap year")
+else:
+    print("Not a leap year")
+
+# 8.
+a1 = float(input("Enter angle A: "))
+a2 = float(input("Enter angle B: "))
+a3 = float(input("Enter angle C: "))
+
+if a1 + a2 + a3 == 180:
+    print("Valid triangle")
+else:
+    print("Invalid triangle")
+
+# 9.
+val = float(input("Enter any number: "))
+
+if val >= 0:
+    print("Absolute value:", val)
+else:
+    print("Absolute value:", -val)
+
+# 10.
+l = float(input("Length: "))
+w = float(input("Breadth: "))
+ar = l * w
+peri = 2 * (l + w)
+
+if ar > peri:
+    print("Area is greater than perimeter.")
+else:
+    print("Perimeter is greater or equal to area.")
+
+# 11.
+xA, yA = map(float, input("Enter point A (x y): ").split())
+xB, yB = map(float, input("Enter point B (x y): ").split())
+xC, yC = map(float, input("Enter point C (x y): ").split())
+
+if (yB - yA) * (xC - xB) == (yC - yB) * (xB - xA):
+    print("All points are collinear.")
+else:
+    print("Points are not on the same line.")
+
+# 12.
+import math
+
+cx, cy = map(float, input("Enter center coordinates (x y): ").split())
+r = float(input("Enter radius: "))
+px, py = map(float, input("Enter point coordinates (x y): ").split())
+
+dist = math.sqrt((px - cx)**2 + (py - cy)**2)
+
+if dist < r:
+    print("Point lies inside the circle.")
+elif dist == r:
+    print("Point lies on the circle.")
+else:
+    print("Point lies outside the circle.")
+
+# 13.
+word_list = [
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+    "seventeen", "eighteen", "nineteen"
+]
+
+user_num = int(input("Enter a number (0-19): "))
+
+if 0 <= user_num <= 19:
+    print(f"Spelling: {word_list[user_num]}")
+else:
+    print("Invalid number entered!")
+
+# 14.
+scores = []
+for index in range(3):
+    value = input(f"Enter marks for paper {index + 1} (type 'A' if absent): ")
+    scores.append(value)
+
+final_total = 0
+has_failed = False
+result_grades = []
+
+for entry in scores:
+    if entry.upper() == 'A':
+        result_grades.append('NA')
+    else:
+        marks_obtained = int(entry)
+        final_total += marks_obtained
+
+        if marks_obtained < 40:
+            result_grades.append('F')
+            has_failed = True
+        elif marks_obtained <= 44:
+            result_grades.append('P')
+        elif marks_obtained <= 49:
+            result_grades.append('C')
+        elif marks_obtained <= 54:
+            result_grades.append('B')
+        elif marks_obtained <= 59:
+            result_grades.append('B+')
+        elif marks_obtained <= 69:
+            result_grades.append('A')
+        elif marks_obtained <= 79:
+            result_grades.append('A+')
+        else:
+            result_grades.append('O')
+
+avg_score = final_total / len(scores)
+print(f"Total Marks: {final_total}")
+print(f"Average: {avg_score:.2f}")
+print("Grades:", result_grades)
+
+if has_failed:
+    print("Result: Fail")
+else:
+    print("Result: Pass")
+
+
+
+# 1.
+sentence = input("Type a string: ")
+vowel_total = 0
+vowel_set = set("aeiouAEIOU")
+
+for letter in sentence:
+    if letter in vowel_set:
+        vowel_total += 1
+
+print("Total vowels:", vowel_total)
+
+# 2.
+original_text = input("Enter a sentence: ")
+converted_text = ""
+
+for ch in original_text:
+    if 'A' <= ch <= 'Z':
+        converted_text += chr(ord(ch) + 32)
+    else:
+        converted_text += ch
+
+print("All lowercase:", converted_text)
+
+# 3.
+first = input("Enter the first string: ")
+second = input("Enter the second string: ")
+
+if first in second:
+    print(f'"{first}" exists inside "{second}"')
+elif second in first:
+    print(f'"{second}" exists inside "{first}"')
+else:
+    print("No string is found within the other.")
+
+# 4.
+main_input = input("Enter the original string: ")
+part_to_remove = input("What part should be removed? ")
+
+cleaned_result = main_input.replace(part_to_remove, "")
+
+print("Updated string:", cleaned_result)

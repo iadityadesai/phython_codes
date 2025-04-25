@@ -1,0 +1,112 @@
+# 1
+import csv
+
+with open("students_data.csv", mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Roll Number", "Student Name", "Maths", "Physics", "English"])
+    writer.writerow([201, "Alex", 82, 91, 88])
+    writer.writerow([202, "Lily", 89, 79, 94])
+    writer.writerow([203, "Ethan", 92, 85, 91])
+
+# 2
+import csv
+
+student_info = {}
+with open("students_data.csv", mode="r") as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip header
+    for record in reader:
+        roll_no = int(record[0])
+        name = record[1]
+        scores = list(map(int, record[2:]))
+        total_score = sum(scores)
+        student_info[roll_no] = {
+            "Student Name": name,
+            "Scores": scores,
+            "Total Marks": total_score
+        }
+
+print(student_info)
+
+# 3
+name_input = input("Please enter your name: ")
+phone_input = input("Please enter your phone number: ")
+email_input = input("Please enter your email address: ")
+
+with open("contact_info.vcf", "w") as vcard:
+    vcard.write("BEGIN:VCARD\n")
+    vcard.write("VERSION:3.0\n")
+    vcard.write(f"N:{name_input};;;\n")
+    vcard.write(f"TEL:{phone_input}\n")
+    vcard.write(f"EMAIL:{email_input}\n")
+    vcard.write("END:VCARD\n")
+
+# 4
+import os
+import shutil
+
+os.makedirs("backup_folder/subfolder", exist_ok=True)
+shutil.copy("students_data.csv", "backup_folder/subfolder/copy_students_data.csv")
+
+# 5
+with open("source_file.txt", "w") as source:
+    source.write("This is a test file containing some lowercase letters.")
+
+with open("source_file.txt", "r") as source:
+    content = source.read()
+
+with open("output_file.txt", "w") as destination:
+    destination.write(content.upper())
+
+# 6
+with open("first_file.txt", "w") as file1:
+    file1.writelines(["X1\n", "X2\n", "X3\n"])
+
+with open("second_file.txt", "w") as file2:
+    file2.writelines(["Y1\n", "Y2\n"])
+
+with open("first_file.txt", "r") as file1, open("second_file.txt", "r") as file2, open("merged_file.txt", "w") as merged:
+    lines1 = file1.readlines()
+    lines2 = file2.readlines()
+    max_lines = max(len(lines1), len(lines2))
+
+    for index in range(max_lines):
+        if index < len(lines1):
+            merged.write(lines1[index])
+        if index < len(lines2):
+            merged.write(lines2[index])
+
+# 7
+import pickle
+
+class Worker:
+    def __init__(self, emp_id, emp_name, date_of_joining, salary):
+        self.emp_id = emp_id
+        self.emp_name = emp_name
+        self.date_of_joining = date_of_joining
+        self.salary = salary
+
+    def __str__(self):
+        return f"Employee ID: {self.emp_id}, Name: {self.emp_name}, DOJ: {self.date_of_joining}, Salary: {self.salary}"
+
+employee = Worker(201, "Ravi", "2024-03-10", 60000)
+
+with open("worker_info.pkl", "wb") as file:
+    pickle.dump(employee, file)
+
+with open("worker_info.pkl", "rb") as file:
+    loaded_employee = pickle.load(file)
+    print(loaded_employee)
+
+# 8
+with open("text_input.txt", "w") as text_file:
+    text_file.write("This is a simple sentence with the words: a, an, and the.")
+
+with open("text_input.txt", "r") as text_file:
+    text_content = text_file.read()
+
+for remove_word in [' a ', ' an ', ' the ']:
+    text_content = text_content.replace(remove_word, ' ')
+
+with open("text_output.txt", "w") as output_file:
+    output_file.write(text_content)

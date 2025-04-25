@@ -1,0 +1,623 @@
+import random
+from collections import deque
+
+# 1
+odd_list = [random.choice(range(1, 200, 2)) for _ in range(5)]
+even_list = [random.choice(range(2, 200, 2)) for _ in range(4)]
+print("Odd List:", odd_list)
+print("Even List:", even_list)
+
+odd_list[2] = even_list
+print("After replacing 3rd element with even list:", odd_list)
+
+flattened = []
+for item in odd_list:
+    if isinstance(item, list):
+        flattened.extend(item)
+    else:
+        flattened.append(item)
+
+flattened.sort()
+print("Flattened and Sorted List:", flattened)
+
+# 2
+random_list = [random.randint(10, 60) for _ in range(20)]
+print("Random List:", random_list)
+search_num = int(input("Enter a number to find: "))
+positions = [i for i, val in enumerate(random_list) if val == search_num]
+print(f"Positions of {search_num}:", positions)
+
+# 3
+list_with_duplicates = [random.randint(5, 35) for _ in range(50)]
+print("Original List:", list_with_duplicates)
+no_duplicates = list(set(list_with_duplicates))
+print("List without duplicates:", no_duplicates)
+
+# 4
+mixed_nums = [random.randint(-100, 100) for _ in range(30)]
+positives = [x for x in mixed_nums if x >= 0]
+negatives = [x for x in mixed_nums if x < 0]
+print("Mixed Numbers:", mixed_nums)
+print("Positive Numbers:", positives)
+print("Negative Numbers:", negatives)
+
+# 5
+str_list = ["apple", "banana", "coding", "fun", "always"]
+uppercased = [word.upper() for word in str_list]
+print("Original:", str_list)
+print("Uppercase:", uppercased)
+
+# 6
+fahrenheit = [50, 77, 95, 113, 140]
+celsius = [(f - 32) * 5 / 9 for f in fahrenheit]
+print("Fahrenheit:", fahrenheit)
+print("Celsius:", celsius)
+
+# 7
+stack = []
+while True:
+    print("\nStack Menu: 1.Push 2.Pop 3.Display 4.Exit")
+    choice = int(input("Enter choice: "))
+    if choice == 1:
+        val = input("Enter value to push: ")
+        stack.append(val)
+    elif choice == 2:
+        if stack:
+            print("Popped:", stack.pop())
+        else:
+            print("Stack is empty.")
+    elif choice == 3:
+        print("Stack:", stack)
+    elif choice == 4:
+        break
+    else:
+        print("Invalid choice.")
+
+# 8
+queue = deque()
+while True:
+    print("\nQueue Menu: 1.Enqueue 2.Dequeue 3.Display 4.Exit")
+    choice = int(input("Enter choice: "))
+    if choice == 1:
+        val = input("Enter value to enqueue: ")
+        queue.append(val)
+    elif choice == 2:
+        if queue:
+            print("Dequeued:", queue.popleft())
+        else:
+            print("Queue is empty.")
+    elif choice == 3:
+        print("Queue:", list(queue))
+    elif choice == 4:
+        break
+    else:
+        print("Invalid choice.")
+
+# 9
+list1 = [10, 20, 30, 40, 50, 60, 70]
+list2 = [20, 50, 90]
+filtered = [x for x in list1 if x not in list2]
+print("List1:", list1)
+print("List2:", list2)
+print("Filtered (List1 - List2):", filtered)
+
+
+# 1
+data = [('arjun', 'rahul'), 'meera', ('dev', 'sahil'), 'ananya', 'kavya']
+boys = 0
+girls = 0
+for item in data:
+    if isinstance(item, tuple):
+        boys += len(item)
+    else:
+        girls += 1
+print("Number of boys:", boys)
+print("Number of girls:", girls)
+
+# 2
+students = [(201, 'arjun', 21), (202, 'rahul', 22), (203, 'meera', 20)]
+roll_nos = []
+names = []
+ages = []
+for s in students:
+    roll_nos.append(s[0])
+    names.append(s[1])
+    ages.append(s[2])
+print("Roll numbers:", roll_nos)
+print("Names:", names)
+print("Ages:", ages)
+
+# 3
+from datetime import date
+
+date1 = (2025, 1, 15)
+date2 = (2025, 3, 5)
+
+d1 = date(*date1)
+d2 = date(*date2)
+diff = abs((d2 - d1).days)
+print("Days between dates:", diff)
+
+# 4
+menu = [('Sandwich', 4.99), ('Sushi', 12.50), ('Taco', 3.75), ('Noodles', 7.80)]
+menu_sorted = sorted(menu, key=lambda x: x[1], reverse=True)
+print("Sorted menu:", menu_sorted)
+
+# 5
+tuple_list = [(), ('x',), (), ('y', 'z'), ('m',), ()]
+filtered = [t for t in tuple_list if t]
+print("After removing empty tuples:", filtered)
+
+# 6
+t = (4, 5, 6)
+t = list(t)
+t[1] = 50
+t = tuple(t)
+print("Modified tuple:", t)
+
+# 7
+t = (100, 200, 300, 400)
+t = list(t)
+del t[1]
+t = tuple(t)
+print("Tuple after deleting element:", t)
+
+# 8
+lst = [('A', 'B', 'C'), 10, 20, 30]
+a = lst[0]
+print(a)
+# Output: ('A', 'B', 'C')
+
+# 1
+def count_lower_upper(s):
+    result = {'lower': 0, 'upper': 0}
+    for ch in s:
+        if ch.islower():
+            result['lower'] += 1
+        elif ch.isupper():
+            result['upper'] += 1
+    return result
+
+print(count_lower_upper("OpenAI Is Revolutionizing AI!"))
+
+# 2
+def compute(n):
+    n = str(n)
+    return int(n) + int(n*2) + int(n*3) + int(n*4)
+
+for i in range(2, 6):
+    print(f"{i} ->", compute(i))
+
+# 3
+def create_array(x, y, z, val):
+    return [[[val for _ in range(z)] for _ in range(y)] for _ in range(x)]
+
+arr = create_array(3, 1, 2, 7)
+print(arr)
+
+# 4
+def sum_avg(m1, m2, m3, m4, m5):
+    total = m1 + m2 + m3 + m4 + m5
+    avg = total / 5
+    return total, avg
+
+print(sum_avg(65, 88, 72, 90, 81))
+
+# 5
+def ispangram(s):
+    s = s.lower().replace(" ", "")
+    return set('abcdefghijklmnopqrstuvwxyz') <= set(s)
+
+print(ispangram("Pack my box with five dozen liquor jugs"))
+
+# 6
+def cube_list(end):
+    return [(x, x**2, x**3) for x in range(1, end + 1)]
+
+print(cube_list(3))
+
+# 7
+def ispalindrome(s):
+    s = s.replace(" ", "").lower()
+    return s == s[::-1]
+
+print(ispalindrome("Was it a car or a cat I saw"))
+
+# 8
+def convert(s):
+    words = s.split()
+    unique_sorted = sorted(set(words))
+    return ' '.join(unique_sorted)
+
+print(convert("apple banana apple orange banana grape"))
+
+# 9
+def count_alpha_digits(s):
+    result = {'alphabets': 0, 'digits': 0}
+    for ch in s:
+        if ch.isalpha():
+            result['alphabets'] += 1
+        elif ch.isdigit():
+            result['digits'] += 1
+    return result
+
+print(count_alpha_digits("AI2025 is here with GPT4"))
+
+# 10
+def frequency(s):
+    words = s.split()
+    freq = {}
+    for word in words:
+        freq[word] = freq.get(word, 0) + 1
+    return dict(sorted(freq.items()))
+
+print(frequency("data science data AI machine learning AI"))
+
+# 11
+def create_list(l1, l2):
+    return [x for x in l1 if x in l2]
+
+print(create_list([10, 20, 30], [30, 40, 50]))
+
+# 12
+def prime_factors(n, i=2):
+    if n == 1:
+        return []
+    if n % i == 0:
+        return [i] + prime_factors(n // i, i)
+    else:
+        return prime_factors(n, i + 1)
+
+print(prime_factors(84))
+
+# 13
+def binary(n):
+    if n == 0:
+        return ''
+    return binary(n // 2) + str(n % 2)
+
+num = 8
+print(binary(num) or "0")
+
+# 14
+def count_vowels(s):
+    if not s:
+        return 0
+    return (1 if s[0].lower() in 'aeiou' else 0) + count_vowels(s[1:])
+
+print(count_vowels("Functional programming is fun"))
+
+# 15
+def reverse_list(lst):
+    if len(lst) == 0:
+        return []
+    return [lst[-1]] + reverse_list(lst[:-1])
+
+print(reverse_list([10, 20, 30, 40]))
+
+# 16
+def power(a, b):
+    if b == 0:
+        return 1
+    return a * power(a, b - 1)
+
+print(power(3, 4))
+
+# 17
+def sanitize(lst):
+    if not lst:
+        return []
+    head = 0 if lst[0] < 0 else lst[0]
+    return [head] + sanitize(lst[1:])
+
+print(sanitize([-7, 2, -9, 3, 0]))
+
+# 18
+def average(lst):
+    def helper(l, total=0, count=0):
+        if not l:
+            return total / count if count != 0 else 0
+        return helper(l[1:], total + l[0], count + 1)
+    return helper(lst)
+
+print(average([5, 15, 25, 35, 45]))
+
+# 19
+def string_length(s):
+    if s == '':
+        return 0
+    return 1 + string_length(s[1:])
+
+print(string_length("initialization"))
+
+# 1
+import csv
+
+with open("students_data.csv", mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Roll No", "Name", "Math", "Physics", "History"])
+    writer.writerow([201, "Aditi", 85, 88, 91])
+    writer.writerow([202, "Ravi", 79, 84, 93])
+    writer.writerow([203, "Sima", 92, 87, 95])
+
+# 2
+import csv
+
+student_records = {}
+with open("students_data.csv", mode="r") as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip header row
+    for row in reader:
+        rollno = int(row[0])
+        name = row[1]
+        marks = list(map(int, row[2:]))
+        total = sum(marks)
+        student_records[rollno] = {
+            "Name": name,
+            "Marks": marks,
+            "Total": total
+        }
+
+print(student_records)
+
+# 3
+full_name = input("Enter your full name: ")
+contact_number = input("Enter your phone number: ")
+email_address = input("Enter your email address: ")
+
+with open("contact_info.vcf", "w") as file:
+    file.write("BEGIN:VCARD\n")
+    file.write("VERSION:3.0\n")
+    file.write(f"N:{full_name};;;\n")
+    file.write(f"TEL:{contact_number}\n")
+    file.write(f"EMAIL:{email_address}\n")
+    file.write("END:VCARD\n")
+
+# 4
+import os
+import shutil
+
+os.makedirs("backup_folder/subfolder", exist_ok=True)
+shutil.copy("students_data.csv", "backup_folder/subfolder/student_backup.csv")
+
+# 5
+with open("source_file.txt", "w") as f:
+    f.write("Here is a text file containing some data.\nThis will be converted to uppercase.")
+
+with open("source_file.txt", "r") as f:
+    content = f.read()
+
+with open("uppercase_file.txt", "w") as f:
+    f.write(content.upper())
+
+# 6
+with open("textfile1.txt", "w") as f:
+    f.writelines(["Line1\n", "Line2\n", "Line3\n"])
+
+with open("textfile2.txt", "w") as f:
+    f.writelines(["Line4\n", "Line5\n"])
+
+with open("textfile1.txt", "r") as f1, open("textfile2.txt", "r") as f2, open("combined.txt", "w") as fout:
+    lines1 = f1.readlines()
+    lines2 = f2.readlines()
+    max_len = max(len(lines1), len(lines2))
+    
+    for i in range(max_len):
+        if i < len(lines1):
+            fout.write(lines1[i])
+        if i < len(lines2):
+            fout.write(lines2[i])
+
+# 7
+import pickle
+
+class Staff:
+    def __init__(self, emp_id, emp_name, joining_date, emp_salary):
+        self.emp_id = emp_id
+        self.emp_name = emp_name
+        self.joining_date = joining_date
+        self.emp_salary = emp_salary
+
+    def __str__(self):
+        return f"{self.emp_id} {self.emp_name} {self.joining_date} {self.emp_salary}"
+
+staff_member = Staff(301, "Meera", "2023-02-15", 60000)
+
+with open("staff_member.pkl", "wb") as f:
+    pickle.dump(staff_member, f)
+
+with open("staff_member.pkl", "rb") as f:
+    loaded_staff = pickle.load(f)
+    print(loaded_staff)
+
+# 8
+with open("input_data.txt", "w") as f:
+    f.write("This file contains the words: a, an, the. Let's remove them.")
+
+with open("input_data.txt", "r") as f:
+    text = f.read()
+
+for word in [' a ', ' an ', ' the ']:
+    text = text.replace(word, ' ')
+
+with open("output_data.txt", "w") as f:
+    f.write(text)
+
+
+while True:
+    user_input = input("Please enter an integer: ")
+    try:
+        number = int(user_input)
+        print(f"Successfully entered: {number}")
+        break
+    except ValueError:
+        print("Invalid input! Please enter a valid integer.")
+
+# 1
+class ComplexNumber:
+    def __init__(self, real_part, imag_part):
+        self.real_part = real_part
+        self.imag_part = imag_part
+
+    def __add__(self, other):
+        return ComplexNumber(self.real_part + other.real_part, self.imag_part + other.imag_part)
+
+    def __sub__(self, other):
+        return ComplexNumber(self.real_part - other.real_part, self.imag_part - other.imag_part)
+
+    def __mul__(self, other):
+        real = self.real_part * other.real_part - self.imag_part * other.imag_part
+        imag = self.real_part * other.imag_part + self.imag_part * other.real_part
+        return ComplexNumber(real, imag)
+
+    def __truediv__(self, other):
+        denominator = other.real_part**2 + other.imag_part**2
+        real = (self.real_part * other.real_part + self.imag_part * other.imag_part) / denominator
+        imag = (self.imag_part * other.real_part - self.real_part * other.imag_part) / denominator
+        return ComplexNumber(real, imag)
+
+    def __str__(self):
+        return f"{self.real_part} + {self.imag_part}i"
+
+n1 = ComplexNumber(3, 4)
+n2 = ComplexNumber(1, 2)
+print("Addition:", n1 + n2)
+print("Subtraction:", n1 - n2)
+print("Multiplication:", n1 * n2)
+print("Division:", n1 / n2)
+
+
+# 2
+class MatrixOperations:
+    def __init__(self, matrix_values):
+        self.matrix_values = matrix_values
+
+    def add_matrices(self, other):
+        return [[self.matrix_values[i][j] + other.matrix_values[i][j] for j in range(3)] for i in range(3)]
+
+    def multiply_matrices(self, other):
+        result = [[0] * 3 for _ in range(3)]
+        for i in range(3):
+            for j in range(3):
+                for k in range(3):
+                    result[i][j] += self.matrix_values[i][k] * other.matrix_values[k][j]
+        return result
+
+    def transpose_matrix(self):
+        return [[self.matrix_values[j][i] for j in range(3)] for i in range(3)]
+
+mat1 = MatrixOperations([[1, 3, 4], [2, 5, 6], [7, 8, 9]])
+mat2 = MatrixOperations([[9, 7, 6], [5, 4, 3], [1, 2, 8]])
+print("Matrix Addition:", mat1.add_matrices(mat2))
+print("Matrix Multiplication:", mat1.multiply_matrices(mat2))
+print("Matrix Transpose:", mat1.transpose_matrix())
+
+
+# 3
+class Shape3D:
+    def __init__(self, shape_type, *dimensions):
+        self.shape_type = shape_type
+        self.dimensions = dimensions
+
+    def calculate_properties(self):
+        if self.shape_type == "sphere":
+            radius = self.dimensions[0]
+            return {"volume": 4/3 * 3.14 * radius**3, "surface_area": 4 * 3.14 * radius**2}
+        elif self.shape_type == "cone":
+            radius, height = self.dimensions
+            return {"volume": 1/3 * 3.14 * radius**2 * height, "surface_area": 3.14 * radius * (radius + (height**2 + radius**2)**0.5)}
+        else:
+            return {"volume": 0, "surface_area": 0}
+
+shape = Shape3D("cone", 4, 6)
+print("3D Shape Volume & Surface:", shape.calculate_properties())
+
+
+# 4
+class GeometricShape:
+    def __init__(self, shape_type, *dimensions):
+        self.shape_type = shape_type
+        self.dimensions = dimensions
+
+    def calculate_area_perimeter(self):
+        if self.shape_type == "triangle":
+            base, height = self.dimensions
+            return {"area": 0.5 * base * height, "perimeter": 3 * base}  # assuming an equilateral triangle
+        elif self.shape_type == "rectangle":
+            length, breadth = self.dimensions
+            return {"area": length * breadth, "perimeter": 2 * (length + breadth)}
+        else:
+            return {}
+
+geo = GeometricShape("rectangle", 5, 3)
+print("Geometric Shape Area & Perimeter:", geo.calculate_area_perimeter())
+
+
+# 5
+class Duration:
+    def __init__(self, hours, minutes):
+        self.hours = hours
+        self.minutes = minutes
+
+    def add_duration(self, other):
+        total_hours = self.hours + other.hours
+        total_minutes = self.minutes + other.minutes
+        if total_minutes >= 60:
+            total_hours += total_minutes // 60
+            total_minutes %= 60
+        return Duration(total_hours, total_minutes)
+
+    def __str__(self):
+        return f"{self.hours} hours and {self.minutes} minutes"
+
+time1 = Duration(3, 45)
+time2 = Duration(2, 30)
+print("Total Duration:", time1.add_duration(time2))
+
+
+# 6
+class Day:
+    def __init__(self, day, month, year):
+        self.date = [day, month, year]
+
+    def __eq__(self, other):
+        return self.date == other.date
+
+day1 = Day(12, 12, 2021)
+day2 = Day(12, 12, 2021)
+print("Are Dates Equal?", day1 == day2)
+
+
+# 7
+class Climate:
+    def __init__(self, weather_data):
+        self.weather_data = weather_data
+
+    def __contains__(self, weather_type):
+        return weather_type in self.weather_data
+
+climate = Climate(["rainy", "sunny", "stormy"])
+print("Is it rainy?", "rainy" in climate)
+print("Is it snowy?", "snowy" in climate)
+
+
+# 8
+class CustomString:
+    def __init__(self, content):
+        self.content = content
+
+    def __iadd__(self, other):
+        self.content += other
+        return self
+
+    def to_lowercase(self):
+        return self.content.lower()
+
+    def to_uppercase(self):
+        return self.content.upper()
+
+str_obj = CustomString("Hi")
+str_obj += " There"
+print("Concatenated String:", str_obj.content)
+print("Lowercase:", str_obj.to_lowercase())
+print("Uppercase:", str_obj.to_uppercase())
